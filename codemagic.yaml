@@ -17,8 +17,23 @@ workflows:
       - name: Limpar projeto
         script: ./gradlew clean
 
-      - name: Build APK Release
-        script: ./gradlew assembleRelease
+      - name: Gerar keystore e assinar APK
+        script: |
+          keytool -genkey -v \
+            -keystore app/4r4-release.keystore \
+            -alias 4r4key \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -storepass android123 \
+            -keypass android123 \
+            -dname "CN=4R4, OU=Dev, O=4R4, L=SP, S=SP, C=BR"
+
+          ./gradlew assembleRelease \
+            -Pandroid.injected.signing.store.file=$(pwd)/app/4r4-release.keystore \
+            -Pandroid.injected.signing.store.password=android123 \
+            -Pandroid.injected.signing.key.alias=4r4key \
+            -Pandroid.injected.signing.key.password=android123
 
     artifacts:
       - app/build/outputs/apk/release/*.apk
