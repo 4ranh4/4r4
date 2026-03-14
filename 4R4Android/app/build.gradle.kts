@@ -8,26 +8,25 @@ plugins {
 
 android {
     namespace = "com.app4r4"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.app4r4"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        // Substitua pela sua chave da Carbon Interface API
         buildConfigField("String", "CARBON_API_KEY", "\"chave_temporaria\"")
         buildConfigField("String", "CARBON_BASE_URL", "\"https://www.carboninterface.com/api/v1/\"")
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -81,10 +80,6 @@ dependencies {
 
     // DataStore
     implementation(libs.datastore.preferences)
-
-    // Charts
-    implementation(libs.vico.compose)
-    implementation(libs.vico.compose.m3)
 
     debugImplementation(libs.androidx.ui.tooling)
 }
