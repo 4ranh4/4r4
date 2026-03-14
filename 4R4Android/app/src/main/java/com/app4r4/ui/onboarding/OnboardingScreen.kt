@@ -1,8 +1,5 @@
 package com.app4r4.ui.onboarding
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -21,7 +18,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 @Composable
 fun OnboardingScreen(onFinish: (transport: String, diet: String) -> Unit) {
@@ -72,7 +68,7 @@ private fun WelcomePage(onNext: () -> Unit) {
         )
         Spacer(Modifier.height(24.dp))
         Text(
-            text = "App4R4",
+            text = "4R4",
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary
@@ -161,9 +157,8 @@ private fun TransportPage(selected: String, onSelect: (String) -> Unit, onNext: 
         Triple("Carro particular", Icons.Default.DirectionsCar, "car"),
         Triple("Transporte público", Icons.Default.DirectionsBus, "bus"),
         Triple("Bicicleta / a pé", Icons.Default.DirectionsBike, "bike"),
-        Triple("Moto", Icons.Default.TwoWheeler, "moto")
+        Triple("Moto", Icons.Default.DirectionsBike, "moto")
     )
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -177,12 +172,8 @@ private fun TransportPage(selected: String, onSelect: (String) -> Unit, onNext: 
             style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(24.dp))
         options.forEach { (label, icon, key) ->
-            SelectionCard(
-                label = label,
-                icon = icon,
-                selected = selected == key,
-                onClick = { onSelect(key) }
-            )
+            SelectionCard(label = label, icon = icon, selected = selected == key,
+                onClick = { onSelect(key) })
             Spacer(Modifier.height(12.dp))
         }
         Spacer(Modifier.height(24.dp))
@@ -202,10 +193,9 @@ private fun DietPage(selected: String, onSelect: (String) -> Unit, onFinish: () 
     val options = listOf(
         Triple("Onívoro (come carne)", Icons.Default.SetMeal, "omnivore"),
         Triple("Flexitariano (pouca carne)", Icons.Default.Restaurant, "flexitarian"),
-        Triple("Vegetariano", Icons.Default.SpaOutlined, "vegetarian"),
-        Triple("Vegano", Icons.Default.EnergySavingsLeaf, "vegan")
+        Triple("Vegetariano", Icons.Default.Eco, "vegetarian"),
+        Triple("Vegano", Icons.Default.Eco, "vegan")
     )
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -223,12 +213,8 @@ private fun DietPage(selected: String, onSelect: (String) -> Unit, onFinish: () 
             style = MaterialTheme.typography.bodyMedium)
         Spacer(Modifier.height(24.dp))
         options.forEach { (label, icon, key) ->
-            SelectionCard(
-                label = label,
-                icon = icon,
-                selected = selected == key,
-                onClick = { onSelect(key) }
-            )
+            SelectionCard(label = label, icon = icon, selected = selected == key,
+                onClick = { onSelect(key) })
             Spacer(Modifier.height(12.dp))
         }
         Spacer(Modifier.height(24.dp))
