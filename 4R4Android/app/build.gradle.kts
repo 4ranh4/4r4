@@ -20,7 +20,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // Substitua pela sua chave da Carbon Interface API
-        buildConfigField("String", "CARBON_API_KEY", "\"SUA_API_KEY_AQUI\"")
+        buildConfigField("String", "CARBON_API_KEY", "\"chave_temporaria\"")
         buildConfigField("String", "CARBON_BASE_URL", "\"https://www.carboninterface.com/api/v1/\"")
     }
 
