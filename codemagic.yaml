@@ -7,6 +7,10 @@ workflows:
       java: 17
  
     scripts:
+      - name: Gerar gradlew
+        script: |
+          gradle wrapper --gradle-version 8.7
+ 
       - name: Tornar gradlew executável
         script: chmod +x ./gradlew
  
@@ -18,3 +22,4 @@ workflows:
  
     artifacts:
       - 4R4Android/app/build/outputs/apk/release/app-release-unsigned.apk
+ 
